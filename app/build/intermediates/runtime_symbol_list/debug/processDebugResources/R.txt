@@ -3008,6 +3008,7 @@ int drawable ic_clear_black_24 0x7f070090
 int drawable ic_clock_black_24dp 0x7f070091
 int drawable ic_keyboard_black_24dp 0x7f070092
 int drawable ic_launcher_background 0x7f070093
+int drawable ic_logo 0x7f0700e7
 int drawable ic_m3_chip_check 0x7f070094
 int drawable ic_m3_chip_checked_circle 0x7f070095
 int drawable ic_m3_chip_close 0x7f070096

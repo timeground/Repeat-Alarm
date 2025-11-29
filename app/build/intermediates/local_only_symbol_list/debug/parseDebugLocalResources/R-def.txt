@@ -18,6 +18,7 @@ drawable bg_action_button
 drawable bg_circle
 drawable bg_preset_button
 drawable ic_launcher_background
+drawable ic_logo
 id btn10m
 id btn15m
 id btn30m
