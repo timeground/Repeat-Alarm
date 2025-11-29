@@ -4,7 +4,7 @@
             "outputFile": "com.example.repeatreminder.app-mergeDebugResources-29:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\athul\\.gradle\\caches\\9.0-milestone-1\\transforms\\ee89fcd732c0d201f19f3fb1b0745627\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\athul\\.gradle\\caches\\8.13\\transforms\\437bb384394fcf8f79b94ef02fd01385\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\athul\\.gradle\\caches\\9.0-milestone-1\\transforms\\afe90b3b276e0ab56bd735a33b3fd2e6\\transformed\\material-1.11.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\athul\\.gradle\\caches\\8.13\\transforms\\a4dacf92a02149cd4ec70f44025a588c\\transformed\\material-1.11.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
