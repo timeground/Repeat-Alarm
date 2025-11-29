@@ -60,6 +60,10 @@
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.example.repeatreminder.app-main-33:\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.example.repeatreminder.app-debug-31:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.example.repeatreminder.app-main-33:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
         "merged": "com.example.repeatreminder.app-debug-31:/drawable_ic_logo.png.flat",
         "source": "com.example.repeatreminder.app-main-33:/drawable/ic_logo.png"
     }
