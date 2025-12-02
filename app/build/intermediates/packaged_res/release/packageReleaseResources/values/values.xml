@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF2D3748</color>
     <color name="blue_preset">#4299E1</color>
+    <color name="btn_circle_bg">#E2E8F0</color>
     <color name="gray_bg">#F5F7FA</color>
     <color name="gray_preset">#EDF2F7</color>
     <color name="green_start">#48BB78</color>

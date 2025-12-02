@@ -1362,6 +1362,7 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color btn_circle_bg
 color button_material_dark
 color button_material_light
 color call_notification_answer_color

@@ -14,4 +14,5 @@
     <color name="red_stop">#F56565</color>
     <color name="blue_preset">#4299E1</color>
     <color name="gray_preset">#EDF2F7</color>
+    <color name="btn_circle_bg">#E2E8F0</color>
 </resources>

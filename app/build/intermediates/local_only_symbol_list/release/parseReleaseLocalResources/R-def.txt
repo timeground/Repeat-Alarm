@@ -2,6 +2,7 @@ R_DEF: Internal format may change without notice
 local
 color black
 color blue_preset
+color btn_circle_bg
 color gray_bg
 color gray_preset
 color green_start
