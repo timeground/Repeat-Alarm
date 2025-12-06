@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 27,
-      "versionName": "3.6",
+      "versionCode": 28,
+      "versionName": "3.7",
       "outputFile": "shrunk-resources-proto-format-release.ap_"
     }
   ],
