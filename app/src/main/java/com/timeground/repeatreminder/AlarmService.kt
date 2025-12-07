@@ -92,13 +92,13 @@ class AlarmService : Service() {
                     prepare() // Valid since we are on main thread (Service) and local file
                     
                     // SMART DURATION LOGIC:
-                    // If sound is short (< 7 seconds), treat as Notification (Play once, auto-stop).
-                    // If sound is long (>= 7 seconds), treat as Alarm (Loop, manual stop).
+                    // If sound is short (< 4 seconds), treat as Notification (Play once, hard stop at 2s).
+                    // If sound is long (>= 4 seconds), treat as Alarm (Loop, manual stop).
                     val durationMs = duration
-                    if (durationMs < 7000) {
+                    if (durationMs < 4000) {
                         isLooping = false
-                        // Auto-stop after 5 seconds (standard beep behavior)
-                        handler.postDelayed(timeoutRunnable, 5000)
+                        // Auto-stop after 2 seconds (User requested)
+                        handler.postDelayed(timeoutRunnable, 2000)
                     } else {
                         isLooping = true
                         // NO TIMEOUT - Rings until user stops it
