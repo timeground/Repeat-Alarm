@@ -21,7 +21,7 @@ import androidx.core.app.NotificationCompat
 
 class AlarmService : Service() {
 
-    private var ringtone: Ringtone? = null
+    private var mediaPlayer: android.media.MediaPlayer? = null
     private var vibrator: Vibrator? = null
     private var isRinging = false
 
@@ -70,9 +70,6 @@ class AlarmService : Service() {
                 playAlarm()
                 isRinging = true
                 saveRingingState(true)
-                
-                // Auto-stop after 5 seconds (Single notification style)
-                handler.postDelayed(timeoutRunnable, 5000)
             }
         }
 
@@ -81,40 +78,73 @@ class AlarmService : Service() {
 
     private fun playAlarm() {
         try {
-            // Play Sound
+            // Play Sound using MediaPlayer for better control (Looping vs One-shot)
             val soundUri = getSavedRingtoneUri()
             if (soundUri != null) {
-                ringtone = RingtoneManager.getRingtone(applicationContext, soundUri)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ringtone?.audioAttributes = AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build()
+                mediaPlayer = android.media.MediaPlayer().apply {
+                    setDataSource(applicationContext, soundUri)
+                    setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_ALARM)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                            .build()
+                    )
+                    prepare() // Valid since we are on main thread (Service) and local file
+                    
+                    // SMART DURATION LOGIC:
+                    // If sound is short (< 7 seconds), treat as Notification (Play once, auto-stop).
+                    // If sound is long (>= 7 seconds), treat as Alarm (Loop, manual stop).
+                    val durationMs = duration
+                    if (durationMs < 7000) {
+                        isLooping = false
+                        // Auto-stop after 5 seconds (standard beep behavior)
+                        handler.postDelayed(timeoutRunnable, 5000)
+                    } else {
+                        isLooping = true
+                        // NO TIMEOUT - Rings until user stops it
+                    }
+                    start()
                 }
-                ringtone?.play()
             }
 
             // Vibrate
             if (getVibrationPreference()) {
                 if (vibrator?.hasVibrator() == true) {
-                    val pattern = longArrayOf(0, 500, 200, 500) // Wait 0, Vibrate 500, Wait 200, Vibrate 500
+                    // Signal is Alarm? Pattern should be more "alarming" if long?
+                    // For consistency, keep same pattern but loop if it's an alarm?
+                    // Let's stick to the current pattern, but loop it if it's an alarm.
+                    
+                    val pattern = longArrayOf(0, 500, 200, 500) 
+                    // Determine repeat based on sound heuristic for consistency?
+                    // Actually, let's keep vibration simple: loop it (-1 is no loop, 0 is loop)
+                    // If we want "Real Alarm", we should loop vibration too.
+                    // Let's default to NO LOOP for vibration to avoid annoyance on short beeps,
+                    // unless we want to be smart here too. 
+                    // Smart Vib: If looping sound, loop vibe.
+                    val repeatIndex = if (mediaPlayer?.isLooping == true) 0 else -1
+                    
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vibrator?.vibrate(VibrationEffect.createWaveform(pattern, -1)) // -1 means NO REPEAT
+                        vibrator?.vibrate(VibrationEffect.createWaveform(pattern, repeatIndex))
                     } else {
                         @Suppress("DEPRECATION")
-                        vibrator?.vibrate(pattern, -1)
+                        vibrator?.vibrate(pattern, repeatIndex)
                     }
                 }
             }
         } catch (e: Exception) {
             Log.e("AlarmService", "Error playing alarm", e)
+            // Fallback: Ensure to stop if error
+            stopSelf()
         }
     }
 
     private fun stopAlarm() {
         try {
             handler.removeCallbacks(timeoutRunnable)
-            ringtone?.stop()
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+            mediaPlayer = null
+            
             vibrator?.cancel()
             
             isRinging = false
@@ -131,13 +161,20 @@ class AlarmService : Service() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Repeat Reminder")
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Repeat Alarm")
             .setContentText("Alarm is ringing")
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_LOW) // Silent notification
-            .build()
+            .setPriority(NotificationCompat.PRIORITY_HIGH) // High priority so it shows up
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            
+        // If it's a looping alarm, make it ongoing
+        if (mediaPlayer?.isLooping == true) {
+             builder.setOngoing(true)
+        }
+            
+        return builder.build()
     }
 
     private fun createNotificationChannel() {
