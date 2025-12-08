@@ -5,4 +5,5 @@
     <string name="test_notification">Test Notification (5s)</string>
     <string name="permission_required">Permission Required</string>
     <string name="permission_rationale">We need notification permissions to send you reminders.</string>
+    <string name="dismiss">DISMISS</string>
 </resources>

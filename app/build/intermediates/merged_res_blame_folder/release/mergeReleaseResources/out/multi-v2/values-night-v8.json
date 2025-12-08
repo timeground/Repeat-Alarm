@@ -6,6 +6,77 @@
                 {
                     "source": "C:\\Users\\athul\\PROJECTS\\Repeat Reminder\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
+                        "startLines": "20,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "1059,102",
+                        "endLines": "25,18",
+                        "endColumns": "12,12",
+                        "endOffsets": "1406,1051"
+                    },
+                    "to": {
+                        "startLines": "17,55",
+                        "startColumns": "4,4",
+                        "startOffsets": "739,4479",
+                        "endLines": "22,71",
+                        "endColumns": "12,12",
+                        "endOffsets": "1081,5326"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\athul\\PROJECTS\\Repeat Reminder\\app\\src\\main\\res\\values-night\\colors.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,379,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endColumns": "-1,-1,-1,41,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endOffsets": "-1,-1,-1,416,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,97,143,191,233,279,325,372,419,466,509,554,599,648,697",
+                        "endColumns": "41,45,47,41,45,45,46,46,46,42,44,44,48,48,41",
+                        "endOffsets": "92,138,186,228,274,320,367,414,461,504,549,594,643,692,734"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\athul\\.gradle\\caches\\8.13\\transforms\\437bb384394fcf8f79b94ef02fd01385\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "23,24,25,26,27,28,29,72",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "1086,1156,1240,1324,1420,1522,1624,5331",
+                        "endColumns": "69,83,83,95,101,101,93,88",
+                        "endOffsets": "1151,1235,1319,1415,1517,1619,1713,5415"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\athul\\.gradle\\caches\\8.13\\transforms\\a4dacf92a02149cd4ec70f44025a588c\\transformed\\material-1.11.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,73,74,75,76,77,78,79,80",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1718,1793,1904,1993,2094,2201,2308,2407,2514,2617,2705,2829,2931,3033,3149,3251,3365,3493,3609,3731,3867,3987,4121,4241,4353,5420,5537,5661,5791,5913,6051,6185,6301",
+                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
+                        "endOffsets": "1788,1899,1988,2089,2196,2303,2402,2509,2612,2700,2824,2926,3028,3144,3246,3360,3488,3604,3726,3862,3982,4116,4236,4348,4474,5532,5656,5786,5908,6046,6180,6296,6416"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeReleaseResources-33:\\values-night-v8\\values-night-v8.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\athul\\PROJECTS\\Repeat Reminder\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "102",

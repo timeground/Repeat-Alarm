@@ -4,18 +4,13 @@ package com.timeground.repeatreminder.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.timeground.repeatreminder.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -26,100 +21,21 @@ public final class ActivityMainBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final AppCompatButton btn10m;
+  public final BottomNavigationView bottomNavigation;
 
   @NonNull
-  public final AppCompatButton btn15m;
-
-  @NonNull
-  public final AppCompatButton btn30m;
-
-  @NonNull
-  public final AppCompatButton btn5m;
-
-  @NonNull
-  public final AppCompatButton btn60m;
-
-  @NonNull
-  public final Button btnAction;
-
-  @NonNull
-  public final AppCompatButton btnMinus;
-
-  @NonNull
-  public final AppCompatButton btnPlus;
-
-  @NonNull
-  public final TextView btnResetTime;
-
-  @NonNull
-  public final ImageButton btnThemeToggle;
-
-  @NonNull
-  public final EditText etInterval;
-
-  @NonNull
-  public final LinearLayout layoutContentContainer;
-
-  @NonNull
-  public final LinearLayout layoutInterval;
+  public final FragmentContainerView fragmentContainer;
 
   @NonNull
   public final ConstraintLayout mainRoot;
 
-  @NonNull
-  public final SwitchCompat switchTimeFormat;
-
-  @NonNull
-  public final SwitchCompat switchVibration;
-
-  @NonNull
-  public final TextView tvClock;
-
-  @NonNull
-  public final TextView tvCountdown;
-
-  @NonNull
-  public final TextView tvNextAlarm;
-
-  @NonNull
-  public final TextView tvSound;
-
-  @NonNull
-  public final TextView tvStartLabel;
-
-  private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull AppCompatButton btn10m,
-      @NonNull AppCompatButton btn15m, @NonNull AppCompatButton btn30m,
-      @NonNull AppCompatButton btn5m, @NonNull AppCompatButton btn60m, @NonNull Button btnAction,
-      @NonNull AppCompatButton btnMinus, @NonNull AppCompatButton btnPlus,
-      @NonNull TextView btnResetTime, @NonNull ImageButton btnThemeToggle,
-      @NonNull EditText etInterval, @NonNull LinearLayout layoutContentContainer,
-      @NonNull LinearLayout layoutInterval, @NonNull ConstraintLayout mainRoot,
-      @NonNull SwitchCompat switchTimeFormat, @NonNull SwitchCompat switchVibration,
-      @NonNull TextView tvClock, @NonNull TextView tvCountdown, @NonNull TextView tvNextAlarm,
-      @NonNull TextView tvSound, @NonNull TextView tvStartLabel) {
+  private ActivityMainBinding(@NonNull ConstraintLayout rootView,
+      @NonNull BottomNavigationView bottomNavigation,
+      @NonNull FragmentContainerView fragmentContainer, @NonNull ConstraintLayout mainRoot) {
     this.rootView = rootView;
-    this.btn10m = btn10m;
-    this.btn15m = btn15m;
-    this.btn30m = btn30m;
-    this.btn5m = btn5m;
-    this.btn60m = btn60m;
-    this.btnAction = btnAction;
-    this.btnMinus = btnMinus;
-    this.btnPlus = btnPlus;
-    this.btnResetTime = btnResetTime;
-    this.btnThemeToggle = btnThemeToggle;
-    this.etInterval = etInterval;
-    this.layoutContentContainer = layoutContentContainer;
-    this.layoutInterval = layoutInterval;
+    this.bottomNavigation = bottomNavigation;
+    this.fragmentContainer = fragmentContainer;
     this.mainRoot = mainRoot;
-    this.switchTimeFormat = switchTimeFormat;
-    this.switchVibration = switchVibration;
-    this.tvClock = tvClock;
-    this.tvCountdown = tvCountdown;
-    this.tvNextAlarm = tvNextAlarm;
-    this.tvSound = tvSound;
-    this.tvStartLabel = tvStartLabel;
   }
 
   @Override
@@ -149,132 +65,22 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btn10m;
-      AppCompatButton btn10m = ViewBindings.findChildViewById(rootView, id);
-      if (btn10m == null) {
+      id = R.id.bottom_navigation;
+      BottomNavigationView bottomNavigation = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigation == null) {
         break missingId;
       }
 
-      id = R.id.btn15m;
-      AppCompatButton btn15m = ViewBindings.findChildViewById(rootView, id);
-      if (btn15m == null) {
-        break missingId;
-      }
-
-      id = R.id.btn30m;
-      AppCompatButton btn30m = ViewBindings.findChildViewById(rootView, id);
-      if (btn30m == null) {
-        break missingId;
-      }
-
-      id = R.id.btn5m;
-      AppCompatButton btn5m = ViewBindings.findChildViewById(rootView, id);
-      if (btn5m == null) {
-        break missingId;
-      }
-
-      id = R.id.btn60m;
-      AppCompatButton btn60m = ViewBindings.findChildViewById(rootView, id);
-      if (btn60m == null) {
-        break missingId;
-      }
-
-      id = R.id.btnAction;
-      Button btnAction = ViewBindings.findChildViewById(rootView, id);
-      if (btnAction == null) {
-        break missingId;
-      }
-
-      id = R.id.btnMinus;
-      AppCompatButton btnMinus = ViewBindings.findChildViewById(rootView, id);
-      if (btnMinus == null) {
-        break missingId;
-      }
-
-      id = R.id.btnPlus;
-      AppCompatButton btnPlus = ViewBindings.findChildViewById(rootView, id);
-      if (btnPlus == null) {
-        break missingId;
-      }
-
-      id = R.id.btnResetTime;
-      TextView btnResetTime = ViewBindings.findChildViewById(rootView, id);
-      if (btnResetTime == null) {
-        break missingId;
-      }
-
-      id = R.id.btnThemeToggle;
-      ImageButton btnThemeToggle = ViewBindings.findChildViewById(rootView, id);
-      if (btnThemeToggle == null) {
-        break missingId;
-      }
-
-      id = R.id.etInterval;
-      EditText etInterval = ViewBindings.findChildViewById(rootView, id);
-      if (etInterval == null) {
-        break missingId;
-      }
-
-      id = R.id.layoutContentContainer;
-      LinearLayout layoutContentContainer = ViewBindings.findChildViewById(rootView, id);
-      if (layoutContentContainer == null) {
-        break missingId;
-      }
-
-      id = R.id.layoutInterval;
-      LinearLayout layoutInterval = ViewBindings.findChildViewById(rootView, id);
-      if (layoutInterval == null) {
+      id = R.id.fragment_container;
+      FragmentContainerView fragmentContainer = ViewBindings.findChildViewById(rootView, id);
+      if (fragmentContainer == null) {
         break missingId;
       }
 
       ConstraintLayout mainRoot = (ConstraintLayout) rootView;
 
-      id = R.id.switchTimeFormat;
-      SwitchCompat switchTimeFormat = ViewBindings.findChildViewById(rootView, id);
-      if (switchTimeFormat == null) {
-        break missingId;
-      }
-
-      id = R.id.switchVibration;
-      SwitchCompat switchVibration = ViewBindings.findChildViewById(rootView, id);
-      if (switchVibration == null) {
-        break missingId;
-      }
-
-      id = R.id.tvClock;
-      TextView tvClock = ViewBindings.findChildViewById(rootView, id);
-      if (tvClock == null) {
-        break missingId;
-      }
-
-      id = R.id.tvCountdown;
-      TextView tvCountdown = ViewBindings.findChildViewById(rootView, id);
-      if (tvCountdown == null) {
-        break missingId;
-      }
-
-      id = R.id.tvNextAlarm;
-      TextView tvNextAlarm = ViewBindings.findChildViewById(rootView, id);
-      if (tvNextAlarm == null) {
-        break missingId;
-      }
-
-      id = R.id.tvSound;
-      TextView tvSound = ViewBindings.findChildViewById(rootView, id);
-      if (tvSound == null) {
-        break missingId;
-      }
-
-      id = R.id.tvStartLabel;
-      TextView tvStartLabel = ViewBindings.findChildViewById(rootView, id);
-      if (tvStartLabel == null) {
-        break missingId;
-      }
-
-      return new ActivityMainBinding((ConstraintLayout) rootView, btn10m, btn15m, btn30m, btn5m,
-          btn60m, btnAction, btnMinus, btnPlus, btnResetTime, btnThemeToggle, etInterval,
-          layoutContentContainer, layoutInterval, mainRoot, switchTimeFormat, switchVibration,
-          tvClock, tvCountdown, tvNextAlarm, tvSound, tvStartLabel);
+      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigation,
+          fragmentContainer, mainRoot);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

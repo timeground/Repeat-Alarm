@@ -11,11 +11,20 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
 
+
         <item name="android:timePickerDialogTheme">@style/MyTimePickerDialog</item>
+        <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
     </style>
 
     <style name="MyTimePickerDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorPrimary">@color/blue_preset</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="MyAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/blue_preset</item>
+        <item name="colorAccent">@color/blue_preset</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:background">@color/white</item>
     </style>
 </resources>

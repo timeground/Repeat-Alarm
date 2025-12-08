@@ -26,7 +26,11 @@ class AlarmService : Service() {
     private var isRinging = false
 
     companion object {
-        const val CHANNEL_ID = "AlarmServiceChannel"
+        const val CHANNEL_HIGH_ID = "AlarmServiceChannelHigh"
+        const val CHANNEL_LOW_ID = "AlarmServiceChannelLow"
+        // Legecy ID for compatibility or general use
+        const val CHANNEL_ID = "AlarmServiceChannel" 
+        
         const val ACTION_STOP = "STOP_ALARM"
         const val ACTION_START = "START_ALARM"
     }
@@ -51,7 +55,7 @@ class AlarmService : Service() {
 
     private val handler = android.os.Handler(android.os.Looper.getMainLooper())
     private val timeoutRunnable = Runnable {
-        stopAlarm()
+        stopAlarm(fromTimeout = true)
         stopSelf()
     }
 
@@ -59,7 +63,7 @@ class AlarmService : Service() {
         val action = intent?.action
 
         if (action == ACTION_STOP) {
-            stopAlarm()
+            stopAlarm(fromTimeout = false)
             stopSelf()
             return START_NOT_STICKY
         }
@@ -70,6 +74,12 @@ class AlarmService : Service() {
                 playAlarm()
                 isRinging = true
                 saveRingingState(true)
+                
+                // Notify UI immediately that ringing started
+                val updateIntent = Intent("com.timeground.repeatreminder.UPDATE_UI")
+                updateIntent.setPackage(packageName)
+                updateIntent.putExtra("is_ringing", true)
+                sendBroadcast(updateIntent)
             }
         }
 
@@ -91,18 +101,19 @@ class AlarmService : Service() {
                     )
                     prepare() // Valid since we are on main thread (Service) and local file
                     
-                    // SMART DURATION LOGIC:
-                    // If sound is short (< 4 seconds), treat as Notification (Play once, hard stop at 2s).
-                    // If sound is long (>= 4 seconds), treat as Alarm (Loop, manual stop).
-                    val durationMs = duration
-                    if (durationMs < 4000) {
-                        isLooping = false
-                        // Auto-stop after 2 seconds (User requested)
-                        handler.postDelayed(timeoutRunnable, 2000)
+                    // Logic based on User Preference
+                    val prefs = getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+                    val ringingDuration = prefs.getInt("ringing_duration", -1) // -1 is Indefinite
+
+                    isLooping = true // Always loop to ensure we fill the duration (or indefinite)
+
+                    if (ringingDuration != -1) {
+                        // User set a specific duration (in seconds)
+                        handler.postDelayed(timeoutRunnable, ringingDuration * 1000L)
                     } else {
-                        isLooping = true
-                        // NO TIMEOUT - Rings until user stops it
+                        // Indefinite - No timeout
                     }
+
                     start()
                 }
             }
@@ -138,7 +149,7 @@ class AlarmService : Service() {
         }
     }
 
-    private fun stopAlarm() {
+    private fun stopAlarm(fromTimeout: Boolean = false) {
         try {
             handler.removeCallbacks(timeoutRunnable)
             mediaPlayer?.stop()
@@ -149,9 +160,53 @@ class AlarmService : Service() {
             
             isRinging = false
             saveRingingState(false)
+            
+            if (fromTimeout) {
+                // If timed out, update notification to show it's finished but keep it in tray
+                updateNotificationFinished()
+                // Detach from foreground but keep notification
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    stopForeground(STOP_FOREGROUND_DETACH)
+                } else {
+                    stopForeground(false)
+                }
+            } else {
+                 // User dismissed it, remove notification
+                 stopForeground(true)
+            }
+            
+            // Notify UI to dismiss the "Dismiss" button and revert to normal state
+            val updateIntent = Intent("com.timeground.repeatreminder.UPDATE_UI")
+            updateIntent.setPackage(packageName)
+            sendBroadcast(updateIntent)
         } catch (e: Exception) {
             Log.e("AlarmService", "Error stopping alarm", e)
         }
+    }
+    
+    private fun updateNotificationFinished() {
+        // Increment and get alarm count
+        val prefs = getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+        var count = prefs.getInt("alarm_count", 0)
+        count++
+        prefs.edit().putInt("alarm_count", count).apply()
+        
+        val countText = "Alarm rang $count time" + if(count > 1) "s" else ""
+        
+        val manager = getSystemService(NotificationManager::class.java)
+        
+        // Use Low channel for finished status
+        val builder = NotificationCompat.Builder(this, CHANNEL_LOW_ID)
+            .setContentTitle("Repeat Alarm")
+            .setContentText(countText)
+            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setContentIntent(PendingIntent.getActivity(
+                this, 0, Intent(this, MainActivity::class.java),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            ))
+            .setAutoCancel(true) // Dismiss when clicked
+            
+        manager.notify(1, builder.build())
     }
 
     private fun createNotification(): Notification {
@@ -160,13 +215,19 @@ class AlarmService : Service() {
             this, 0, notificationIntent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
+        
+        val prefs = getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+        val startPopup = prefs.getBoolean("popup_enabled", true)
+        
+        val channelId = if (startPopup) CHANNEL_HIGH_ID else CHANNEL_LOW_ID
+        val priority = if (startPopup) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_LOW
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(this, channelId)
             .setContentTitle("Repeat Alarm")
             .setContentText("Alarm is ringing")
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_HIGH) // High priority so it shows up
+            .setPriority(priority)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             
         // If it's a looping alarm, make it ongoing
@@ -179,12 +240,33 @@ class AlarmService : Service() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val manager = getSystemService(NotificationManager::class.java)
+            
+            // High Importance Channel (Popup)
+            val channelHigh = NotificationChannel(
+                CHANNEL_HIGH_ID,
+                "Alarm Service High (Popup)",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            // No sound from notification itself, handled by MediaPlayer
+            channelHigh.setSound(null, null) 
+            manager.createNotificationChannel(channelHigh)
+            
+            // Low Importance Channel (No Popup)
+            val channelLow = NotificationChannel(
+                CHANNEL_LOW_ID,
+                "Alarm Service Low (No Popup)",
+                NotificationManager.IMPORTANCE_LOW
+            )
+            channelLow.setSound(null, null)
+            manager.createNotificationChannel(channelLow)
+            
+            // Legacy channel cleanup or keep for fallback
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID,
                 "Alarm Service Channel",
                 NotificationManager.IMPORTANCE_LOW
             )
-            val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(serviceChannel)
         }
     }
@@ -206,7 +288,11 @@ class AlarmService : Service() {
     }
 
     override fun onDestroy() {
-        stopAlarm()
+        // If destroyed by system or stopSelf, ensure resources are released
+        // Default to not removing notification if we assume it might be timeout path,
+        // but typically stopAlarm is called before.
+        // If we just call stopAlarm() here, user might have just swiped away task.
+        stopAlarm(fromTimeout = false) 
         super.onDestroy()
     }
 }

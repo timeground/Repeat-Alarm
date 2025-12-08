@@ -2014,6 +2014,7 @@
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
+    <string name="dismiss">DISMISS</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
@@ -5648,6 +5649,12 @@
     <item name="android:layout_gravity">center</item>
     <item name="android:textAlignment" ns1:ignore="NewApi">center</item>
   </style>
+    <style name="MyAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/blue_preset</item>
+        <item name="colorAccent">@color/blue_preset</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:background">@color/white</item>
+    </style>
     <style name="MyTimePickerDialog" parent="ThemeOverlay.MaterialComponents.TimePicker">
         <item name="colorPrimary">@color/blue_preset</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -6560,7 +6567,9 @@
         <item name="colorOnSecondary">@color/black</item>
         
 
+
         <item name="android:timePickerDialogTheme">@style/MyTimePickerDialog</item>
+        <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
     </style>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
