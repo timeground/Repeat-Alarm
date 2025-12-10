@@ -102,6 +102,31 @@
                     android:textSize="13sp"
                     android:layout_marginBottom="24dp"/>
 
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchTimeFormat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="24-Hour Format"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:checked="false"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:layout_marginBottom="24dp"/>
+
+                 <TextView
+                    android:id="@+id/tvSound"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sound: Default"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="16sp"
+                    android:paddingVertical="12dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginBottom="8dp"/>
+
                 <LinearLayout
                     android:id="@+id/layoutDuration"
                     android:layout_width="match_parent"

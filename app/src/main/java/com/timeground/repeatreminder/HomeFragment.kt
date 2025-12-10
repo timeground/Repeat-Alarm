@@ -48,9 +48,7 @@ class HomeFragment : Fragment() {
     private lateinit var tvClock: TextView
     private lateinit var tvStartLabel: TextView
     private lateinit var btnResetTime: TextView
-    private lateinit var tvSound: TextView
     private lateinit var switchVibration: SwitchCompat
-    private lateinit var switchTimeFormat: SwitchCompat
     
     private var isRunning = false
     private var intervalMinutes = 15
@@ -66,22 +64,6 @@ class HomeFragment : Fragment() {
             val now = System.currentTimeMillis()
             val delay = 1000 - (now % 1000)
             handler.postDelayed(this, delay)
-        }
-    }
-    
-    private val ringtoneLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK && result.data != null) {
-            val uri: Uri? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                result.data?.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI, Uri::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                result.data?.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
-            }
-            if (uri != null) {
-                saveRingtone(uri)
-            } else {
-                saveRingtone(null)
-            }
         }
     }
     
@@ -122,6 +104,8 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -132,40 +116,20 @@ class HomeFragment : Fragment() {
         tvClock = view.findViewById(R.id.tvClock)
         tvStartLabel = view.findViewById(R.id.tvStartLabel)
         btnResetTime = view.findViewById(R.id.btnResetTime)
-        tvSound = view.findViewById(R.id.tvSound)
         switchVibration = view.findViewById(R.id.switchVibration)
-        switchTimeFormat = view.findViewById(R.id.switchTimeFormat)
-        switchTimeFormat = view.findViewById(R.id.switchTimeFormat)
         
         tvClock.setOnClickListener { showTimePickerDialog() }
         btnResetTime.setOnClickListener { resetToNow() }
-        tvSound.setOnClickListener { pickRingtone() }
         
         switchVibration.setOnCheckedChangeListener { _, isChecked ->
             saveVibrationPreference(isChecked)
         }
         
-        switchTimeFormat.setOnCheckedChangeListener { _, isChecked ->
-            saveTimeFormatPreference(isChecked)
-            updateClock()
-            if (isRunning) startCountdown()
-            if (startTimeCalendar != null) {
-                val hour = startTimeCalendar!!.get(Calendar.HOUR_OF_DAY)
-                val minute = startTimeCalendar!!.get(Calendar.MINUTE)
-                updateStartLabel(hour, minute)
-            }
-        }
-        
-
-        
         tvInterval.setOnClickListener { showDurationPicker() }
         
         handler.post(clockRunnable)
         
-        updateSoundUI()
         loadVibrationPreference()
-        loadTimeFormatPreference()
-        loadTimeFormatPreference()
         
         val btnMinus = view.findViewById<Button>(R.id.btnMinus)
         val btnPlus = view.findViewById<Button>(R.id.btnPlus)
@@ -245,6 +209,15 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // Refresh preferences
+        loadTimeFormatPreference()
+        updateClock()
+        if (startTimeCalendar != null) {
+            val hour = startTimeCalendar!!.get(Calendar.HOUR_OF_DAY)
+            val minute = startTimeCalendar!!.get(Calendar.MINUTE)
+            updateStartLabel(hour, minute)
+        }
+
         checkAlarmState()
         
         val filter = IntentFilter("com.timeground.repeatreminder.UPDATE_UI")
@@ -594,64 +567,24 @@ class HomeFragment : Fragment() {
         tvClock.text = sdf.format(java.util.Date())
     }
     
-    private fun pickRingtone() {
-        val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALL)
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Tone")
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, getSavedRingtoneUri())
-        ringtoneLauncher.launch(intent)
-    }
-    
-    private fun saveRingtone(uri: Uri?) {
-        val context = context ?: return
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        prefs.edit().putString("sound_uri", uri?.toString() ?: "").apply()
-        updateSoundUI()
-    }
-    
-    private fun getSavedRingtoneUri(): Uri? {
-        val context = context ?: return null
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        val uriString = prefs.getString("sound_uri", "")
-        return if (uriString.isNullOrEmpty()) null else Uri.parse(uriString)
-    }
-    
-    private fun updateSoundUI() {
-        val context = context ?: return
-        val uri = getSavedRingtoneUri()
-        if (uri != null && isAdded) {
-            val ringtone = RingtoneManager.getRingtone(context, uri)
-            tvSound.text = "Sound: ${ringtone.getTitle(context)}"
-        } else if (isAdded) {
-            tvSound.text = "Sound: Default"
-        }
-    }
-    
-    private fun saveVibrationPreference(isEnabled: Boolean) {
-        val context = context ?: return
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        prefs.edit().putBoolean("vibration_enabled", isEnabled).apply()
-    }
 
+    
+
+    
+    private fun saveVibrationPreference(enabled: Boolean) {
+        val prefs = requireContext().getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+        prefs.edit().putBoolean("vibration_enabled", enabled).apply()
+    }
+    
     private fun loadVibrationPreference() {
-        val context = context ?: return
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        val isEnabled = prefs.getBoolean("vibration_enabled", true)
-        switchVibration.isChecked = isEnabled
-    }
-
-    private fun saveTimeFormatPreference(is24Hour: Boolean) {
-        use24HourFormat = is24Hour
-        val context = context ?: return
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        prefs.edit().putBoolean("use_24h_format", is24Hour).apply()
+        val prefs = requireContext().getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+        val enabled = prefs.getBoolean("vibration_enabled", true)
+        switchVibration.isChecked = enabled
     }
 
     private fun loadTimeFormatPreference() {
-        val context = context ?: return
-        val prefs = context.getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
-        use24HourFormat = prefs.getBoolean("use_24h_format", false)
-        switchTimeFormat.isChecked = use24HourFormat
+        val prefs = requireContext().getSharedPreferences("repeat_reminder_prefs", Context.MODE_PRIVATE)
+        use24HourFormat = prefs.getBoolean("use_24_hour_format", false)
     }
     
 

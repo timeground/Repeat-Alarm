@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(HomeFragment())
                     true
                 }
+                R.id.nav_alarm -> {
+                    loadFragment(AlarmFragment())
+                    true
+                }
                 R.id.nav_settings -> {
                     loadFragment(SettingsFragment())
                     true

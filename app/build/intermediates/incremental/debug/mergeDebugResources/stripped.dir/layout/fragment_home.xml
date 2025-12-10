@@ -75,6 +75,17 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="@dimen/margin_bottom_interval_layout">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REPEAT EVERY"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="8dp"/>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -206,38 +217,15 @@
 
                 </LinearLayout>
                 
-                <TextView
-                    android:id="@+id/tvSound"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Sound: Default"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_sound_vibrate"
-                    android:padding="8dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"/>
-
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switchVibration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20dp"
                     android:text="Vibrate"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_size_sound_vibrate"
                     android:checked="true"/>
-                    
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switchTimeFormat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="24-Hour Format"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/text_size_sound_vibrate"
-                    android:checked="false"/>
 
 
                 <TextView

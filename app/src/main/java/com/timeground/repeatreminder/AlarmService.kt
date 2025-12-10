@@ -26,7 +26,7 @@ class AlarmService : Service() {
     private var isRinging = false
 
     companion object {
-        const val CHANNEL_HIGH_ID = "AlarmServiceChannelHigh"
+        const val CHANNEL_HIGH_ID = "AlarmServiceChannelHigh_v2"
         const val CHANNEL_LOW_ID = "AlarmServiceChannelLow"
         // Legecy ID for compatibility or general use
         const val CHANNEL_ID = "AlarmServiceChannel" 
@@ -229,6 +229,25 @@ class AlarmService : Service() {
             .setContentIntent(pendingIntent)
             .setPriority(priority)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
+
+        if (startPopup) {
+            val fullScreenIntent = Intent(this, AlarmActivity::class.java)
+            // Required for starting activity from outside of an activity context
+            fullScreenIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) 
+            
+            val fullScreenPendingIntent = PendingIntent.getActivity(
+                this, 0, fullScreenIntent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            builder.setFullScreenIntent(fullScreenPendingIntent, true)
+            
+            // Explicitly try to start activity (works if app is in foreground)
+            try {
+                startActivity(fullScreenIntent)
+            } catch (e: Exception) {
+                Log.e("AlarmService", "Failed to start activity directly", e)
+            }
+        }
             
         // If it's a looping alarm, make it ongoing
         if (mediaPlayer?.isLooping == true) {

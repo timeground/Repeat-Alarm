@@ -38,6 +38,9 @@ public final class FragmentSettingsBinding implements ViewBinding {
   public final SwitchCompat switchRingIndefinitely;
 
   @NonNull
+  public final SwitchCompat switchTimeFormat;
+
+  @NonNull
   public final Toolbar toolbar;
 
   @NonNull
@@ -46,20 +49,26 @@ public final class FragmentSettingsBinding implements ViewBinding {
   @NonNull
   public final TextView tvRingIndefinitelyDesc;
 
+  @NonNull
+  public final TextView tvSound;
+
   private FragmentSettingsBinding(@NonNull LinearLayout rootView,
       @NonNull LinearLayout layoutDuration, @NonNull SeekBar seekBarDuration,
       @NonNull SwitchCompat switchDarkMode, @NonNull SwitchCompat switchPopup,
-      @NonNull SwitchCompat switchRingIndefinitely, @NonNull Toolbar toolbar,
-      @NonNull TextView tvDurationLabel, @NonNull TextView tvRingIndefinitelyDesc) {
+      @NonNull SwitchCompat switchRingIndefinitely, @NonNull SwitchCompat switchTimeFormat,
+      @NonNull Toolbar toolbar, @NonNull TextView tvDurationLabel,
+      @NonNull TextView tvRingIndefinitelyDesc, @NonNull TextView tvSound) {
     this.rootView = rootView;
     this.layoutDuration = layoutDuration;
     this.seekBarDuration = seekBarDuration;
     this.switchDarkMode = switchDarkMode;
     this.switchPopup = switchPopup;
     this.switchRingIndefinitely = switchRingIndefinitely;
+    this.switchTimeFormat = switchTimeFormat;
     this.toolbar = toolbar;
     this.tvDurationLabel = tvDurationLabel;
     this.tvRingIndefinitelyDesc = tvRingIndefinitelyDesc;
+    this.tvSound = tvSound;
   }
 
   @Override
@@ -119,6 +128,12 @@ public final class FragmentSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.switchTimeFormat;
+      SwitchCompat switchTimeFormat = ViewBindings.findChildViewById(rootView, id);
+      if (switchTimeFormat == null) {
+        break missingId;
+      }
+
       id = R.id.toolbar;
       Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
       if (toolbar == null) {
@@ -137,9 +152,15 @@ public final class FragmentSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvSound;
+      TextView tvSound = ViewBindings.findChildViewById(rootView, id);
+      if (tvSound == null) {
+        break missingId;
+      }
+
       return new FragmentSettingsBinding((LinearLayout) rootView, layoutDuration, seekBarDuration,
-          switchDarkMode, switchPopup, switchRingIndefinitely, toolbar, tvDurationLabel,
-          tvRingIndefinitelyDesc);
+          switchDarkMode, switchPopup, switchRingIndefinitely, switchTimeFormat, toolbar,
+          tvDurationLabel, tvRingIndefinitelyDesc, tvSound);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

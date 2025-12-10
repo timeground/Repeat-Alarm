@@ -3015,6 +3015,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_add
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
@@ -3223,11 +3224,20 @@ id btnAction
 id btnMinus
 id btnPlus
 id btnResetTime
+id btnSnooze
+id btnStop
 id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
 id carryVelocity
+id cbFri
+id cbMon
+id cbSat
+id cbSun
+id cbThu
+id cbTue
+id cbWed
 id center
 id centerCrop
 id centerInside
@@ -3307,6 +3317,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabAdd
 id fade
 id fill
 id fill_horizontal
@@ -3333,6 +3344,7 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id header
 id header_title
 id hide_ime_id
 id hideable
@@ -3430,6 +3442,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id nav_alarm
 id nav_home
 id nav_settings
 id navigation_bar_item_active_indicator_view
@@ -3492,6 +3505,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recyclerView
 id report_drawn
 id reverseSawtooth
 id right
@@ -3563,6 +3577,7 @@ id submenuarrow
 id submit_area
 id supportScrollUp
 id switchDarkMode
+id switchEnable
 id switchPopup
 id switchRingIndefinitely
 id switchTimeFormat
@@ -3583,6 +3598,7 @@ id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
 id text
 id text2
+id textClock
 id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -3598,6 +3614,7 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id timePicker
 id title
 id titleDividerNoCustom
 id title_template
@@ -3616,12 +3633,16 @@ id transition_transform
 id triangle
 id tvClock
 id tvCountdown
+id tvDays
 id tvDurationLabel
+id tvEmptyState
 id tvInterval
+id tvLabel
 id tvNextAlarm
 id tvRingIndefinitelyDesc
 id tvSound
 id tvStartLabel
+id tvTime
 id unchecked
 id uniform
 id unlabeled
@@ -3759,6 +3780,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_alarm_fullscreen
 layout activity_main
 layout activity_settings
 layout custom_dialog
@@ -3777,11 +3799,14 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_add_alarm
 layout dialog_duration_picker
+layout fragment_alarm
 layout fragment_home
 layout fragment_settings
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
+layout item_alarm
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

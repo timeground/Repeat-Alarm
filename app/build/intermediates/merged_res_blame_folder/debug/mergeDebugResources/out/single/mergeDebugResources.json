@@ -84,6 +84,10 @@
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\drawable\\ic_home.xml"
     },
     {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\layout_fragment_alarm.xml.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\fragment_alarm.xml"
+    },
+    {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
@@ -94,6 +98,10 @@
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\drawable_ic_add.xml.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\drawable\\ic_add.xml"
     },
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\drawable_bg_preset_button.xml.flat",
@@ -108,12 +116,12 @@
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\mipmap-xhdpi_ic_logo.png.flat",
-        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-xhdpi\\ic_logo.png"
-    },
-    {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\menu_bottom_nav_menu.xml.flat",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\mipmap-xhdpi_ic_logo.png.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-xhdpi\\ic_logo.png"
     },
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\drawable_ic_launcher_background.xml.flat",
@@ -128,8 +136,16 @@
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\layout_item_alarm.xml.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\item_alarm.xml"
+    },
+    {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\xml_data_extraction_rules.xml.flat",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\layout_dialog_add_alarm.xml.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\dialog_add_alarm.xml"
     },
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\layout_activity_main.xml.flat",
@@ -142,6 +158,10 @@
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\layout_activity_alarm_fullscreen.xml.flat",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\activity_alarm_fullscreen.xml"
     },
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-debug-35:\\drawable_ic_logo.png.flat",

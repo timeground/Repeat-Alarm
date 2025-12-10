@@ -3,9 +3,15 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_alarm"
+        android:icon="@drawable/ic_add"
+        android:title="Alarms" />
+
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings"/>
+        android:title="Settings" />
 </menu>

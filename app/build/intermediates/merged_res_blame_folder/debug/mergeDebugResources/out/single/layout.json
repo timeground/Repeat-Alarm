@@ -4,8 +4,24 @@
         "source": "com.timeground.repeatreminder.app-main-37:/layout/fragment_home.xml"
     },
     {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\fragment_alarm.xml",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\fragment_alarm.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\activity_alarm_fullscreen.xml",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\activity_alarm_fullscreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\item_alarm.xml",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\item_alarm.xml"
+    },
+    {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\fragment_settings.xml",
         "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\dialog_add_alarm.xml",
+        "source": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-main-37:\\layout\\dialog_add_alarm.xml"
     },
     {
         "merged": "C:\\Users\\athul\\.gradle\\daemon\\8.13\\com.timeground.repeatreminder.app-mergeDebugResources-34:\\layout\\activity_settings.xml",

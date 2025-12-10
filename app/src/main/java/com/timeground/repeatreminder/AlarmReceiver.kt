@@ -20,7 +20,9 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent.action
         
-        if (action == "com.timeground.repeatreminder.ALARM_TRIGGER" || action == "com.timeground.repeatreminder.TEST_TRIGGER") {
+        if (action == "com.timeground.repeatreminder.ALARM_TRIGGER" || 
+            action == "com.timeground.repeatreminder.TEST_TRIGGER" ||
+            action == "com.timeground.repeatreminder.STANDARD_ALARM_TRIGGER") {
             // Start Alarm Service
             startAlarmService(context)
             
@@ -29,6 +31,22 @@ class AlarmReceiver : BroadcastReceiver() {
                 val intervalMinutes = intent.getIntExtra("interval", 0)
                 if (intervalMinutes > 0) {
                     scheduleNextAlarm(context, intervalMinutes)
+                }
+            } else if (action == "com.timeground.repeatreminder.STANDARD_ALARM_TRIGGER") {
+                // For standard alarms, rescheduling happens here for the next occurrence.
+                val alarmId = intent.getLongExtra("alarm_id", -1)
+                if (alarmId != -1L) {
+                    // We need to fetch the alarm to check its days and reschedule
+                    // Access DB here? Receiver runs on main thread, DB op should be bg, 
+                    // but for sqlite/room simple query, main thread (few ms) is often tolerated in Receivers 
+                    // or goAsync. Let's use simple logic for now.
+                    val contextApp = context.applicationContext
+                    val dbHelper = com.timeground.repeatreminder.data.AlarmDatabaseHelper(contextApp)
+                    val alarm = dbHelper.getAlarm(alarmId)
+                    if (alarm != null && alarm.isEnabled) {
+                         // Reschedule for next valid day
+                         com.timeground.repeatreminder.utils.AlarmScheduler.scheduleAlarm(contextApp, alarm)
+                    }
                 }
             }
         }

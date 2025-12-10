@@ -12,8 +12,8 @@ android {
         applicationId = "com.timeground.repeatreminder"
         minSdk = 26
         targetSdk = 35
-        versionCode = 41
-        versionName = "4.9"
+        versionCode = 43
+        versionName = "5.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

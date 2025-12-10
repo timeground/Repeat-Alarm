@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.timeground.repeatreminder"
-    android:versionCode="41"
-    android:versionName="4.9" >
+    android:versionCode="42"
+    android:versionName="5.0" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <permission
         android:name="com.timeground.repeatreminder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -35,6 +36,14 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.RepeatReminder" >
+        <activity
+            android:name="com.timeground.repeatreminder.AlarmActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:turnScreenOn="true" />
         <activity
             android:name="com.timeground.repeatreminder.MainActivity"
             android:exported="true" >

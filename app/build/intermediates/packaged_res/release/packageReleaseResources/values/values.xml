@@ -31,12 +31,12 @@
     <dimen name="text_size_plus_minus">32sp</dimen>
     <dimen name="text_size_preset">14sp</dimen>
     <dimen name="text_size_sound_vibrate">16sp</dimen>
-    <string name="app_name">Repeat Reminder</string>
+    <string name="app_name">Repeat Alarm</string>
     <string name="dismiss">DISMISS</string>
     <string name="permission_rationale">We need notification permissions to send you reminders.</string>
     <string name="permission_required">Permission Required</string>
-    <string name="start_reminder">START REMINDER</string>
-    <string name="stop_reminder">STOP REMINDER</string>
+    <string name="start_reminder">START ALARM</string>
+    <string name="stop_reminder">STOP ALARM</string>
     <string name="test_notification">Test Notification (5s)</string>
     <style name="MyAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
         <item name="colorPrimary">@color/blue_preset</item>

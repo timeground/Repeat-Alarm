@@ -57,9 +57,6 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final LinearLayout layoutInterval;
 
   @NonNull
-  public final SwitchCompat switchTimeFormat;
-
-  @NonNull
   public final SwitchCompat switchVibration;
 
   @NonNull
@@ -75,9 +72,6 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView tvNextAlarm;
 
   @NonNull
-  public final TextView tvSound;
-
-  @NonNull
   public final TextView tvStartLabel;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView, @NonNull AppCompatButton btn10m,
@@ -85,10 +79,9 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull AppCompatButton btn5m, @NonNull AppCompatButton btn60m, @NonNull Button btnAction,
       @NonNull AppCompatButton btnMinus, @NonNull AppCompatButton btnPlus,
       @NonNull TextView btnResetTime, @NonNull ConstraintLayout homeRoot,
-      @NonNull LinearLayout layoutInterval, @NonNull SwitchCompat switchTimeFormat,
-      @NonNull SwitchCompat switchVibration, @NonNull TextView tvClock,
-      @NonNull TextView tvCountdown, @NonNull TextView tvInterval, @NonNull TextView tvNextAlarm,
-      @NonNull TextView tvSound, @NonNull TextView tvStartLabel) {
+      @NonNull LinearLayout layoutInterval, @NonNull SwitchCompat switchVibration,
+      @NonNull TextView tvClock, @NonNull TextView tvCountdown, @NonNull TextView tvInterval,
+      @NonNull TextView tvNextAlarm, @NonNull TextView tvStartLabel) {
     this.rootView = rootView;
     this.btn10m = btn10m;
     this.btn15m = btn15m;
@@ -101,13 +94,11 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.btnResetTime = btnResetTime;
     this.homeRoot = homeRoot;
     this.layoutInterval = layoutInterval;
-    this.switchTimeFormat = switchTimeFormat;
     this.switchVibration = switchVibration;
     this.tvClock = tvClock;
     this.tvCountdown = tvCountdown;
     this.tvInterval = tvInterval;
     this.tvNextAlarm = tvNextAlarm;
-    this.tvSound = tvSound;
     this.tvStartLabel = tvStartLabel;
   }
 
@@ -200,12 +191,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.switchTimeFormat;
-      SwitchCompat switchTimeFormat = ViewBindings.findChildViewById(rootView, id);
-      if (switchTimeFormat == null) {
-        break missingId;
-      }
-
       id = R.id.switchVibration;
       SwitchCompat switchVibration = ViewBindings.findChildViewById(rootView, id);
       if (switchVibration == null) {
@@ -236,12 +221,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvSound;
-      TextView tvSound = ViewBindings.findChildViewById(rootView, id);
-      if (tvSound == null) {
-        break missingId;
-      }
-
       id = R.id.tvStartLabel;
       TextView tvStartLabel = ViewBindings.findChildViewById(rootView, id);
       if (tvStartLabel == null) {
@@ -250,8 +229,7 @@ public final class FragmentHomeBinding implements ViewBinding {
 
       return new FragmentHomeBinding((ConstraintLayout) rootView, btn10m, btn15m, btn30m, btn5m,
           btn60m, btnAction, btnMinus, btnPlus, btnResetTime, homeRoot, layoutInterval,
-          switchTimeFormat, switchVibration, tvClock, tvCountdown, tvInterval, tvNextAlarm, tvSound,
-          tvStartLabel);
+          switchVibration, tvClock, tvCountdown, tvInterval, tvNextAlarm, tvStartLabel);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
